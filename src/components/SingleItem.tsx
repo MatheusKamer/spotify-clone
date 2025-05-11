@@ -6,12 +6,12 @@ import { Link } from 'react-router-dom';
 
 interface SingleItemProps {
   item: Artist | Song;
-  type: 'Artista' | 'Música';
+  type?: string;
   idPath: string;
 }
 
 const SingleItem = ({ item, type, idPath }: SingleItemProps) => {
-  const isSong = type === 'Música';
+  const isSong = type === 'song';
 
   return (
     <Link className="single-item" to={`${idPath}/${item.id}`}>
