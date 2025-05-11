@@ -1,24 +1,29 @@
 import { faCirclePlay } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import SongList from '../components/SongList';
 
+import { artistArray } from '../assets/database/artists';
+
 const Artist = () => {
+  const { id } = useParams<{ id: string }>();
+  const artist = artistArray.find((s) => s.id === Number(id));
+
   return (
     <div className="artist">
       <div
         className="artist__header"
         style={{
-          backgroundImage: `linear-gradient(to bottom, var(--_shade), var(--_shade)),url(https://i.scdn.co/image/ab67618600001016b37fbcbd078cb239588df5d9)`,
+          backgroundImage: `linear-gradient(to bottom, var(--_shade), var(--_shade)),url(${artist?.banner})`,
         }}
       >
-        <h2 className="artist__title">Henrique e Juliano</h2>
+        <h2 className="artist__title">{artist?.name}</h2>
       </div>
 
       <div className="artist__body">
         <h2>Populares</h2>
 
-        <SongList />
+        <SongList artist={artist ? artist : undefined} />
       </div>
 
       <Link to={'/song/1'}>

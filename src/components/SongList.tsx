@@ -3,24 +3,28 @@ import { useState } from 'react';
 import SongItem from './SongItem';
 
 import { songsArray } from '../assets/database/songs';
+import type { Artist } from '../@types/Artist';
 
-const SongList = () => {
+interface SongListProps {
+  artist: Artist | undefined;
+}
+
+const SongList = ({ artist }: SongListProps) => {
   const [exibitionCount, setExibitionCount] = useState(1);
 
-  const songs = songsArray.filter(
-    (song) => song.artist === 'Henrique & Juliano'
-  );
+  const songs = songsArray.filter((song) => song.artist === artist?.name);
 
   const visibleSongs = songs.slice(0, exibitionCount * 5);
 
   return (
     <div className="song-list">
-      {visibleSongs.map((song) => (
+      {visibleSongs.map((song, index) => (
         <SongItem
           key={song.id}
+          index={index}
           song={song}
           onClick={() => {
-            console.log('Song clicked:', song.artist);
+            console.log('Song clicked:', index);
           }}
         />
       ))}
