@@ -4,12 +4,11 @@ import type { Song } from '../@types/Song';
 interface SongItemProps {
   song: Song;
   index: number;
-  onClick: () => void;
 }
 
-const SongItem = ({ song, index, onClick }: SongItemProps) => {
+const SongItem = ({ song, index }: SongItemProps) => {
   return (
-    <Link to={`/song/${song.id}`} className="song-item" onClick={onClick}>
+    <Link to={`/song/${song.id}`} className="song-item">
       <div className="song-item__number-album">
         <p>{index + 1}</p>
 

@@ -1,7 +1,8 @@
-import { useParams } from 'react-router-dom';
-import { songsArray } from '../assets/database/songs';
+import { Link, useParams } from 'react-router-dom';
+
 import Player from '../components/Player';
 
+import { songsArray } from '../assets/database/songs';
 import { artistArray } from '../assets/database/artists';
 
 const Song = () => {
@@ -19,16 +20,16 @@ const Song = () => {
       </div>
 
       <div className="song__bar">
-        <div className="song__artist-image">
+        <Link to={`/artist/${artist?.id}`} className="song__artist-image">
           <img
             width={75}
             height={75}
             src={artist?.image}
             alt={`Imagem do artista ${artist?.name}`}
           />
-        </div>
+        </Link>
 
-        <Player />
+        <Player song={song ? song : undefined} />
 
         <div>
           <p className="song__name">{song?.name}</p>

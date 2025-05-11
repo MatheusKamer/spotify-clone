@@ -1,13 +1,17 @@
+import { Link, useParams } from 'react-router-dom';
+
+import SongList from '../components/SongList';
 import { faCirclePlay } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link, useParams } from 'react-router-dom';
-import SongList from '../components/SongList';
 
 import { artistArray } from '../assets/database/artists';
+import { songsArray } from '../assets/database/songs';
 
 const Artist = () => {
   const { id } = useParams<{ id: string }>();
   const artist = artistArray.find((s) => s.id === Number(id));
+
+  const songs = songsArray.filter((song) => song.artist === artist?.name);
 
   return (
     <div className="artist">
@@ -23,10 +27,10 @@ const Artist = () => {
       <div className="artist__body">
         <h2>Populares</h2>
 
-        <SongList artist={artist ? artist : undefined} />
+        <SongList artist={artist ? artist : undefined} songs={songs} />
       </div>
 
-      <Link to={'/song/1'}>
+      <Link to={`/song/${songs[0]?.id}`}>
         <FontAwesomeIcon
           className="single-item__icon single-item__icon--artist"
           icon={faCirclePlay}
