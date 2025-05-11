@@ -2,6 +2,7 @@ import { faCirclePlay } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import type { Artist } from '../@types/Artist';
 import type { Song } from '../@types/Song';
+import { Link } from 'react-router-dom';
 
 interface SingleItemProps {
   item: Artist | Song;
@@ -13,7 +14,7 @@ const SingleItem = ({ item, type, idPath }: SingleItemProps) => {
   const isSong = type === 'Música';
 
   return (
-    <a className="single-item" href={`${idPath}/${item.id}`}>
+    <Link className="single-item" to={`${idPath}/${item.id}`}>
       <div className="single-item__div-image-button">
         <div className="single-item__div-image">
           <img src={item.image} alt={`Imagem do ${item.name}`} />
@@ -31,7 +32,7 @@ const SingleItem = ({ item, type, idPath }: SingleItemProps) => {
           <p className="single-item__type">Artista</p>
         )}
       </div>
-    </a>
+    </Link>
   );
 };
 

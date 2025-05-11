@@ -1,6 +1,7 @@
 import SingleItem from './SingleItem';
 import type { ArtistArrayType } from '../@types/Artist';
 import type { SongArrayType } from '../@types/Song';
+import { Link } from 'react-router-dom';
 
 interface ItemListProps {
   title: string;
@@ -18,7 +19,7 @@ const ItemList = ({ title, type, path, idPath, items }: ItemListProps) => {
     <div className="item-list">
       <div className="item-list__header">
         <h2>{title}</h2>
-        <a href={path}>Mostrar tudo</a>
+        <Link to={path}>Mostrar tudo</Link>
       </div>
 
       <div className="item-list__container">
